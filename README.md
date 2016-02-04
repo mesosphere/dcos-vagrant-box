@@ -24,6 +24,15 @@ The DCOS Vagrant Box is normally built in CI, on demand, but can be built manual
 Note that because the build process uses internet repositories with unversioned requirements, it's not **exactly** reproducible. Each built box may be slightly different than the last, but installations using the same box should be exactly the same.
 
 
+### Build Requirements
+
+- [Packer](https://www.packer.io/) - tool for OS image building
+- [VirtualBox](https://www.virtualbox.org/) (>= 4.3)
+- [Git](https://git-scm.com/) - for updating the Vagrant Box Catalog Metadata
+- [Docker](https://www.docker.com/) - for running various other dependencies
+- [OpenSSL](https://www.openssl.org/) - for generating box checksums
+
+
 ### Build Pipeline
 
 1. Checkout - Clone or pull this repo
