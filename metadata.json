@@ -1,0 +1,32 @@
+{
+  "name": "mesosphere/dcos-centos-virtualbox",
+  "description": "Base image on which to install Mesosphere DCOS on VirtualBox",
+  "versions": [
+    {
+      "version": "0.2.0",
+      "status": "active",
+      "description_markdown": "Smaller image:\r\n- zeroed /empty, /tmp/whitespace, /boot/whitespace, and swap\r\n- wiped bash history\r\n- wiped install log\r\n- compressed harder (level 9)",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-us-west-1.amazonaws.com/dcos-vagrant/dcos-centos-virtualbox-0.2.0.box",
+          "checksum_type": "sha1",
+          "checksum": "d93fd23f21992604eb1fe56df512f00eae0bcb03"
+        }
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "status": "active",
+      "description_markdown": "First release of dcos-centos-virtualbox!\r\n\r\nBased on CentOS-7-x86_64-DVD-1511 with a yum upgrade on 2016-01-22.\r\n\r\nIncludes all the dependencies necessary to install DCOS, but does not include DOCS itself.\r\n\r\nFor more info about DCOS, see https://mesosphere.com",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-us-west-1.amazonaws.com/dcos-vagrant/dcos-centos-virtualbox-0.1.0.box",
+          "checksum_type": "sha1",
+          "checksum": "b953909d65d882122d23fff30ec0f6028790d590"
+        }
+      ]
+    }
+  ]
+}

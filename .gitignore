@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+dcos_generate_config*.sh
+.vagrant
+packer_cache
+*.box
