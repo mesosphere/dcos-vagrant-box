@@ -6,7 +6,7 @@ This is containerized AWS CLI on alpine to avoid requiring the aws cli to be ins
 ## Build
 
 ```
-cd <repo>/build/aws-cli
+cd <repo>/aws-cli
 docker build -t mesosphere/aws-cli .
 ```
 

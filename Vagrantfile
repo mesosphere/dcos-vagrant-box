@@ -6,10 +6,10 @@
 # export DCOS_BOX_URL=https://atlas.hashicorp.com/karlkfi/dcos-centos-virtualbox
 
 # Local Repo
-# export DCOS_BOX_URL=file://~/workspace/dcos-vagrant/build/metadata.json
+# export DCOS_BOX_URL=file://~/workspace/dcos-vagrant-box/metadata.json
 
 # Local Box
-# vagrant box add mesosphere/dcos-centos-virtualbox file://~/workspace/dcos-vagrant/build/dcos-centos-virtualbox.box
+# vagrant box add mesosphere/dcos-centos-virtualbox file://~/workspace/dcos-vagrant-box/dcos-centos-virtualbox.box
 # export DCOS_BOX_VERSION=0
 
 DCOS_BOX = ENV.fetch("DCOS_BOX", "mesosphere/dcos-centos-virtualbox")

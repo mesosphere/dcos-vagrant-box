@@ -9,15 +9,15 @@ if [ -z "${BOX_VERSION}" ]; then
   exit 1
 fi
 
-build_dir=$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)
+project_dir=$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)
 
-if ! grep -q "dcos-centos-virtualbox-${BOX_VERSION}.box" "${build_dir}/metadata.json"; then
+if ! grep -q "dcos-centos-virtualbox-${BOX_VERSION}.box" "${project_dir}/metadata.json"; then
   echo "metadata.json does not include dcos-centos-virtualbox-${BOX_VERSION}.box" >&2
   exit 1
 fi
 
 echo "Building mesosphere/aws-cli"
-cd "${build_dir}/aws-cli"
+cd "${project_dir}/aws-cli"
 docker build -t mesosphere/aws-cli .
 
 echo "Uploading metadata.json"

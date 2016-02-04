@@ -9,7 +9,7 @@ if [ -z "${BOX_VERSION}" ]; then
   exit 1
 fi
 
-build_dir=$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)
+project_dir=$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)
 
 PACKER="$(which packer || true)"
 if [ -z "${PACKER}" ]; then
@@ -18,6 +18,6 @@ if [ -z "${PACKER}" ]; then
 fi
 
 echo "Building dcos-centos-virtualbox-${BOX_VERSION}.box"
-cd "${build_dir}"
+cd "${project_dir}"
 "${PACKER}" build packer-template.json
 mv dcos-centos-virtualbox.box dcos-centos-virtualbox-${BOX_VERSION}.box

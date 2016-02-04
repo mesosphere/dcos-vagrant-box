@@ -58,7 +58,7 @@ To test a new local box, add the box to vagrant and set the `DCOS_BOX_VERSION` e
 
 ```
 cd <dcos-vagrant-box>
-vagrant box add mesosphere/dcos-centos-virtualbox build/dcos-centos-virtualbox.box
+vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox.box
 export DCOS_BOX_VERSION=0
 vagrant up
 ```
@@ -67,7 +67,7 @@ The same method can be used to test a new local box with [dcos-vagrant](https://
 
 ```
 cd <dcos-vagrant>
-vagrant box add mesosphere/dcos-centos-virtualbox build/dcos-centos-virtualbox.box
+vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox.box
 export DCOS_BOX_VERSION=0
 vagrant up boot [vms...]
 ```
