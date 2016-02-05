@@ -14,6 +14,7 @@ project_dir=$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)
 BOX_NAME=dcos-centos-virtualbox-${BOX_VERSION}
 
 echo "Checking out build branch: ${BOX_NAME}"
+cd "${project_dir}"
 git checkout ${BOX_NAME}
 git pull origin ${BOX_NAME}
 
@@ -27,6 +28,7 @@ cd "${project_dir}/aws-cli"
 docker build -t mesosphere/aws-cli .
 
 echo "Uploading metadata.json"
+cd "${project_dir}"
 aws-cli/aws.sh s3 cp metadata.json s3://dcos-vagrant/ --content-type "application/json"
 
 echo "Checking out master branch"
