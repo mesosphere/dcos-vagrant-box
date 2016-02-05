@@ -54,7 +54,15 @@ cd <dcos-vagrant-box>
 packer build packer-template.json
 ```
 
-To test a new local box, add the box to vagrant and set the `DCOS_BOX_VERSION` environment variable:
+
+## Test
+
+New boxes can be tested with either the Vagrantfile in this repo or (preferably) with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant).
+
+
+### Test Local Box
+
+To test a new local box (e.g. after `ci/build_release.sh`), add the box to vagrant and set the `DCOS_BOX_VERSION` environment variable:
 
 ```
 cd <dcos-vagrant-box>
@@ -63,12 +71,30 @@ export DCOS_BOX_VERSION=0
 vagrant up
 ```
 
-The same method can be used to test a new local box with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant):
+Or with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant):
 
 ```
 cd <dcos-vagrant>
 vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox.box
 export DCOS_BOX_VERSION=0
+vagrant up boot [vms...]
+```
+
+### Test Local Catalog
+
+To test a local Vagrant Box Catalog (e.g. after `ci/update_catalog.sh`), set the `DCOS_BOX_URL` environment variable:
+
+```
+cd <dcos-vagrant-box>
+export DCOS_BOX_URL=file://~/workspace/dcos-vagrant-box/metadata.json
+vagrant up
+```
+
+Or with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant):
+
+```
+cd <dcos-vagrant>
+export DCOS_BOX_URL=file://~/workspace/dcos-vagrant-box/metadata.json
 vagrant up boot [vms...]
 ```
 
