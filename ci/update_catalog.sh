@@ -9,11 +9,6 @@ if [ -z "${BOX_VERSION}" ]; then
   exit 1
 fi
 
-if [ -z "${BOX_FILE}" ]; then
-  echo "BOX_FILE must be set" >&2
-  exit 1
-fi
-
 if [ -z "${BOX_DESC}" ]; then
   echo "BOX_DESC must be set" >&2
   exit 1
@@ -23,18 +18,23 @@ project_dir=$(cd "$(dirname "${BASH_SOURCE}")/.." && pwd -P)
 
 BOX_NAME=dcos-centos-virtualbox-${BOX_VERSION}
 
+if [ ! -f "${BOX_NAME}.box" ]; then
+  echo "Box not found: ${BOX_NAME}.box" >&2
+  exit 1
+fi
+
 if grep -q "${BOX_NAME}.box" "${project_dir}/metadata.json"; then
-  echo "metadata.json already includes ${BOX_NAME}.box" >&2
+  echo "Catalog already includes ${BOX_NAME}.box" >&2
   exit 1
 fi
 
 echo "Generating checksum"
-CHECKSUM=$(openssl sha1 "${BOX_FILE}" | cut -d ' ' -f 2)
+CHECKSUM=$(openssl sha1 "${BOX_NAME}.box" | cut -d ' ' -f 2)
 
 echo "Creating git branch: ${BOX_NAME}"
 git checkout -b ${BOX_NAME}
 
-echo "Updating metadata.json"
+echo "Updating catalog"
 docker run --rm -it \
   -v "${project_dir}:/project" \
   karlkfi/atlas-meta \
