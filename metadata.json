@@ -3,6 +3,19 @@
   "description": "Base image on which to install Mesosphere DCOS on VirtualBox",
   "versions": [
     {
+      "version": "0.3.0",
+      "status": "active",
+      "description_markdown": "Automated CI Build",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://s3-us-west-1.amazonaws.com/dcos-vagrant/dcos-centos-virtualbox-0.3.0.box",
+          "checksum_type": "sha1",
+          "checksum": "896927432c22c6e5b43e197eab7f0664eeaed13e"
+        }
+      ]
+    },
+    {
       "version": "0.2.0",
       "status": "active",
       "description_markdown": "Smaller image:\r\n- zeroed /empty, /tmp/whitespace, /boot/whitespace, and swap\r\n- wiped bash history\r\n- wiped install log\r\n- compressed harder (level 9)",
