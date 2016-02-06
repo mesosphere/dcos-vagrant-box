@@ -5,7 +5,7 @@ RUN apk -v --update add \
         groff \
         less \
         && \
-    pip install --upgrade awscli && \
+    pip install --upgrade awscli s3cmd && \
     apk -v --purge del py-pip && \
     rm /var/cache/apk/*
 VOLUME /root/.aws
