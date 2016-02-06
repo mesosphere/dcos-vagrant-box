@@ -9,7 +9,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://s3-us-west-1.amazonaws.com/dcos-vagrant/dcos-centos-virtualbox-0.3.0.box",
+          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.3.0.box",
           "checksum_type": "sha1",
           "checksum": "896927432c22c6e5b43e197eab7f0664eeaed13e"
         }
@@ -22,7 +22,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://s3-us-west-1.amazonaws.com/dcos-vagrant/dcos-centos-virtualbox-0.2.0.box",
+          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.2.0.box",
           "checksum_type": "sha1",
           "checksum": "d93fd23f21992604eb1fe56df512f00eae0bcb03"
         }
@@ -35,7 +35,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://s3-us-west-1.amazonaws.com/dcos-vagrant/dcos-centos-virtualbox-0.1.0.box",
+          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.1.0.box",
           "checksum_type": "sha1",
           "checksum": "b953909d65d882122d23fff30ec0f6028790d590"
         }
