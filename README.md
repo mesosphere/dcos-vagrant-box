@@ -1,8 +1,10 @@
 # DCOS Vagrant Box
 
-This base OS image exists to speed up the process of installing DCOS on Vagrant managed VirtualBox VMs.
+Vagrant box builder for [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant) using [Packer](https://www.packer.io/).
 
-The DCOS Vagrant Box **does not include DCOS**, just it's dependencies.
+The box produced by this builder **does not include DCOS**, just it's dependencies.
+
+Pre-provisioning this box front-loads internet access requirements, flakiness, and slowness resulting from third party package managemers and installers. This makes DCOS installation faster and more reliable at the cost of potentially having slightly outdated dependencies.
 
 
 ## Contents
