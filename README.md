@@ -69,13 +69,13 @@ New boxes can be tested with either the Vagrantfile in this repo or (preferably)
 
 #### Install Vagrant VBGuest Plugin
 
-    The [VBGuest Plugin](https://github.com/dotless-de/vagrant-vbguest) manages automatically installing VirtualBox Guest Additions appropriate to your local Vagrant version on each new VirtualBox VM as it is created.
+The [VBGuest Plugin](https://github.com/dotless-de/vagrant-vbguest) manages automatically installing VirtualBox Guest Additions appropriate to your local Vagrant version on each new VirtualBox VM as it is created.
 
-    ```bash
-    vagrant plugin install vagrant-vbguest
-    ```
+```bash
+vagrant plugin install vagrant-vbguest
+```
 
-    This allows the pre-built vagrant box image to work on multiple (and future) versions of VirtualBox.
+This allows the pre-built vagrant box image to work on multiple (and future) versions of VirtualBox.
 
 ### Test Local Box
 
