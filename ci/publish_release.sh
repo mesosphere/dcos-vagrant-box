@@ -42,3 +42,7 @@ git push origin master
 echo "Deleting build branch"
 git branch -D ${BOX_NAME}
 git push origin --delete ${BOX_NAME}
+
+echo "Creating tag"
+git tag -a v${BOX_VERSION} -m "Version ${BOX_VERSION}"
+git push origin v${BOX_VERSION}
