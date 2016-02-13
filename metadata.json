@@ -3,6 +3,19 @@
   "description": "Base image on which to install Mesosphere DCOS on VirtualBox",
   "versions": [
     {
+      "version": "0.4.0",
+      "status": "active",
+      "description_markdown": "- Switch to CentOS Minimal\\n- Remove VirtualBox Guest Additions\\n- Cache docker registry",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.4.0.box",
+          "checksum_type": "sha1",
+          "checksum": "79d04d291a0420b477d03efa5e8d357656342b8a"
+        }
+      ]
+    },
+    {
       "version": "0.3.0",
       "status": "active",
       "description_markdown": "Automated CI Build",
