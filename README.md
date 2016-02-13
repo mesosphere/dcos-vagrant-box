@@ -12,7 +12,6 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
 - CentOS 7+
 - Docker
 - Vagrant default SSH key
-- VirtualBox Guest Additions
 - Disabled firewalld
 - Cached Docker images
   - nginx
