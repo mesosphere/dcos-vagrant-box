@@ -1,26 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Vagrant-Cloud
-# export DCOS_BOX=karlkfi/dcos-centos-virtualbox
-# export DCOS_BOX_URL=https://atlas.hashicorp.com/karlkfi/dcos-centos-virtualbox
-
-# Local Repo
-# export DCOS_BOX_URL=file://~/workspace/dcos-vagrant-box/metadata.json
-
-# Local Box
-# vagrant box add mesosphere/dcos-centos-virtualbox file://~/workspace/dcos-vagrant-box/dcos-centos-virtualbox.box
-# export DCOS_BOX_VERSION=0
-
-DCOS_BOX = ENV.fetch("DCOS_BOX", "mesosphere/dcos-centos-virtualbox")
-DCOS_BOX_URL = ENV.fetch("DCOS_BOX_URL", "http://downloads.mesosphere.com/dcos-vagrant/metadata.json")
-DCOS_BOX_VERSION = ENV.fetch("DCOS_BOX_VERSION", nil)
+$dcos_box = ENV.fetch("DCOS_BOX", "mesosphere/dcos-centos-virtualbox")
+$dcos_box_url = ENV.fetch("DCOS_BOX_URL", "http://downloads.mesosphere.com/dcos-vagrant/metadata.json")
+$dcos_box_version = ENV.fetch("DCOS_BOX_VERSION", nil)
 
 Vagrant.configure(2) do |config|
+  config.vbguest.auto_update = true
+
   config.vm.define "dcos-centos-virtualbox" do |vm_cfg|
-    vm_cfg.vm.box = DCOS_BOX
-    vm_cfg.vm.box_url = DCOS_BOX_URL
-    vm_cfg.vm.box_version = DCOS_BOX_VERSION
+    vm_cfg.vm.box = $dcos_box
+    vm_cfg.vm.box_url = $dcos_box_url
+    vm_cfg.vm.box_version = $dcos_box_version
 
     vm_cfg.vm.provider "virtualbox" do |v|
       v.name = "dcos-centos-virtualbox"
