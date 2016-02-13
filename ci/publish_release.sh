@@ -15,8 +15,8 @@ BOX_NAME=dcos-centos-virtualbox-${BOX_VERSION}
 
 echo "Checking out build branch: ${BOX_NAME}"
 cd "${project_dir}"
+git fetch origin ${BOX_NAME}
 git checkout ${BOX_NAME}
-git pull origin ${BOX_NAME}
 
 if ! grep -q "${BOX_NAME}.box" "${project_dir}/metadata.json"; then
   echo "metadata.json does not include ${BOX_NAME}.box" >&2
@@ -32,8 +32,8 @@ cd "${project_dir}"
 aws-cli/aws.sh s3 cp metadata.json s3://downloads.mesosphere.io/dcos-vagrant/ --content-type "application/json"
 
 echo "Checking out master branch"
+git fetch origin master
 git checkout master
-git pull origin master
 
 echo "Merging build branch to master"
 git merge ${BOX_NAME} --no-ff -m "Publish release: ${BOX_NAME}"
