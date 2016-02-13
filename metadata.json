@@ -5,7 +5,7 @@
     {
       "version": "0.4.0",
       "status": "active",
-      "description_markdown": "- Switch to CentOS Minimal\\n- Remove VirtualBox Guest Additions\\n- Cache docker registry",
+      "description_markdown": "- Switch to CentOS Minimal\n- Remove VirtualBox Guest Additions\n- Cache docker registry",
       "providers": [
         {
           "name": "virtualbox",
