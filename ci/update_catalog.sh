@@ -35,7 +35,8 @@ echo "Creating git branch: ${BOX_NAME}"
 git checkout -b ${BOX_NAME}
 
 echo "Updating catalog"
-docker run --rm -it \
+docker run --rm \
+  -t $(tty &>/dev/null && echo "-i") \
   -v "${project_dir}:/project" \
   karlkfi/atlas-meta \
   --repo '/project/metadata.json' \
