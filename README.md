@@ -62,6 +62,22 @@ packer build packer-template.json
 New boxes can be tested with either the Vagrantfile in this repo or (preferably) with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant).
 
 
+### Test Requirements
+
+- [Vagrant](https://www.vagrantup.com/) (>= 1.8.1)
+- [VirtualBox](https://www.virtualbox.org/) (>= 4.3)
+  - [VBGuest Plugin](https://github.com/dotless-de/vagrant-vbguest)
+
+#### Install Vagrant VBGuest Plugin
+
+    The [VBGuest Plugin](https://github.com/dotless-de/vagrant-vbguest) manages automatically installing VirtualBox Guest Additions appropriate to your local Vagrant version on each new VirtualBox VM as it is created.
+
+    ```bash
+    vagrant plugin install vagrant-vbguest
+    ```
+
+    This allows the pre-built vagrant box image to work on multiple (and future) versions of VirtualBox.
+
 ### Test Local Box
 
 To test a new local box (e.g. after `ci/build_release.sh`), add the box to vagrant and set the `DCOS_BOX_VERSION` environment variable:
