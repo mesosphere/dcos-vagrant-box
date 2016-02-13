@@ -17,7 +17,11 @@ docker pull jplock/zookeeper
 echo ">>> Caching docker image: nginx"
 docker pull nginx
 
+echo ">>> Caching docker image: registry"
+docker pull registry:2
+
 echo ">>> Disabling firewalld"
+# docker/firewalld conflict: https://github.com/docker/docker/issues/16137
 systemctl stop firewalld
 systemctl disable firewalld
 
