@@ -6,7 +6,7 @@ set -o pipefail
 
 echo ">>> Installing packages required by DCOS installer"
 # See https://github.com/mesosphere/dcos-image/blob/master/providers/bash.py
-yum install --assumeyes --tolerant curl bash ping tar xz unzip
+yum install --assumeyes --tolerant curl bash ping tar xz unzip ipset
 
 echo ">>> Installing net-tools (for debugging)"
 yum install --assumeyes --tolerant net-tools
