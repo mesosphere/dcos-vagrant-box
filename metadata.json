@@ -3,6 +3,19 @@
   "description": "Base image on which to install Mesosphere DCOS on VirtualBox",
   "versions": [
     {
+      "version": "0.4.2",
+      "status": "active",
+      "description_markdown": "Added `ipset` package to enable Minuteman load balancing",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.4.2.box",
+          "checksum_type": "sha1",
+          "checksum": "63d0044f4925292e4b9059c71838e43bd4568c02"
+        }
+      ]
+    },
+    {
       "version": "0.4.1",
       "status": "active",
       "description_markdown": "Re-add VirtualBox Additions",
