@@ -9,7 +9,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.4.2.box",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.4.2.box",
           "checksum_type": "sha1",
           "checksum": "63d0044f4925292e4b9059c71838e43bd4568c02"
         }
@@ -22,7 +22,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.4.1.box",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.4.1.box",
           "checksum_type": "sha1",
           "checksum": "aa457edbd91f78306402d20dbab3d24809b93c16"
         }
@@ -35,7 +35,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.4.0.box",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.4.0.box",
           "checksum_type": "sha1",
           "checksum": "79d04d291a0420b477d03efa5e8d357656342b8a"
         }
@@ -48,7 +48,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.3.0.box",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.3.0.box",
           "checksum_type": "sha1",
           "checksum": "896927432c22c6e5b43e197eab7f0664eeaed13e"
         }
@@ -61,7 +61,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.2.0.box",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.2.0.box",
           "checksum_type": "sha1",
           "checksum": "d93fd23f21992604eb1fe56df512f00eae0bcb03"
         }
@@ -74,7 +74,7 @@
       "providers": [
         {
           "name": "virtualbox",
-          "url": "https://downloads.mesosphere.com/dcos-vagrant/dcos-centos-virtualbox-0.1.0.box",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.1.0.box",
           "checksum_type": "sha1",
           "checksum": "b953909d65d882122d23fff30ec0f6028790d590"
         }

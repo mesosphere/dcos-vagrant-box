@@ -119,7 +119,7 @@ To revert back to the remote Vagrant Box Catalog:
 
 ```
 unset DCOS_BOX_URL
-echo -n "https://downloads.mesosphere.com/dcos-vagrant/metadata.json" > ~/.vagrant.d/boxes/mesosphere-VAGRANTSLASH-dcos-centos-virtualbox/metadata_url
+echo -n "https://downloads.dcos.io/dcos-vagrant/metadata.json" > ~/.vagrant.d/boxes/mesosphere-VAGRANTSLASH-dcos-centos-virtualbox/metadata_url
 ```
 
 

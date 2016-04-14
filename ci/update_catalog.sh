@@ -44,7 +44,7 @@ docker run --rm \
   --status 'active' \
   --desc "${BOX_DESC}" \
   --provider 'virtualbox' \
-  --box "https://downloads.mesosphere.com/dcos-vagrant/${BOX_NAME}.box" \
+  --box "https://downloads.dcos.io/dcos-vagrant/${BOX_NAME}.box" \
   --checksum-type sha1 \
   --checksum "${CHECKSUM}" \
   add
