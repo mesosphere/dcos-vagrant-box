@@ -23,7 +23,7 @@ export AWS_SECRET_ACCESS_KEY="<key>"
 Upload file to S3:
 
 ```
-./aws.sh s3 cp ../dcos-centos-virtualbox-0.2.1.box s3://downloads.mesosphere.io/dcos-vagrant/
+./aws.sh s3 cp ../dcos-centos-virtualbox-0.2.1.box s3://downloads.dcos.io/dcos-vagrant/
 ```
 
 

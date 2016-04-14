@@ -29,7 +29,7 @@ docker build -t mesosphere/aws-cli .
 
 echo "Uploading metadata.json"
 cd "${project_dir}"
-aws-cli/aws.sh s3 cp metadata.json s3://downloads.mesosphere.io/dcos-vagrant/ --content-type "application/json"
+aws-cli/aws.sh s3 cp metadata.json s3://downloads.dcos.io/dcos-vagrant/ --content-type "application/json"
 
 echo "Checking out master branch"
 git fetch origin master

@@ -17,4 +17,4 @@ docker build -t mesosphere/aws-cli .
 
 echo "Uploading dcos-centos-virtualbox-${BOX_VERSION}.box"
 cd "${project_dir}"
-aws-cli/aws.sh s3 cp dcos-centos-virtualbox-${BOX_VERSION}.box s3://downloads.mesosphere.io/dcos-vagrant/
+aws-cli/aws.sh s3 cp dcos-centos-virtualbox-${BOX_VERSION}.box s3://downloads.dcos.io/dcos-vagrant/
