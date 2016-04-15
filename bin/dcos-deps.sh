@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-echo ">>> Installing packages required by DCOS installer"
+echo ">>> Installing packages required by DC/OS installer"
 # See https://github.com/mesosphere/dcos-image/blob/master/providers/bash.py
 yum install --assumeyes --tolerant curl bash ping tar xz unzip ipset
 

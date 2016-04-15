@@ -1,6 +1,6 @@
 {
   "name": "mesosphere/dcos-centos-virtualbox",
-  "description": "Base image on which to install Mesosphere DCOS on VirtualBox",
+  "description": "Base image on which to install Mesosphere DC/OS on VirtualBox",
   "versions": [
     {
       "version": "0.4.2",
@@ -70,7 +70,7 @@
     {
       "version": "0.1.0",
       "status": "active",
-      "description_markdown": "First release of dcos-centos-virtualbox!\r\n\r\nBased on CentOS-7-x86_64-DVD-1511 with a yum upgrade on 2016-01-22.\r\n\r\nIncludes all the dependencies necessary to install DCOS, but does not include DOCS itself.\r\n\r\nFor more info about DCOS, see https://mesosphere.com",
+      "description_markdown": "First release of dcos-centos-virtualbox!\r\n\r\nBased on CentOS-7-x86_64-DVD-1511 with a yum upgrade on 2016-01-22.\r\n\r\nIncludes all the dependencies necessary to install DC/OS, but does not include DOCS itself.\r\n\r\nFor more info about DC/OS, see https://mesosphere.com",
       "providers": [
         {
           "name": "virtualbox",

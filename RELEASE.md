@@ -27,14 +27,14 @@
     1. Pushes the Box Catalog changes as a new release candidate git branch
 1. Test (Manual)
 
-    The following steps should be performed for each supported DCOS release (stable + EarlyAccess + continuous) for each supported version of dcos-vagrant (last release + head of master).
+    The following steps should be performed for each supported DC/OS release (stable + EarlyAccess + continuous) for each supported version of dcos-vagrant (last release + head of master).
     1. Clone or checkout [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant)
     1. Configure dcos-vagrant to use the modified Box Catalog
 
         ```
         export DCOS_BOX_URL=file://~/workspace/dcos-vagrant-box/metadata.json
         ```
-    1. Download the latest DCOS release
+    1. Download the latest DC/OS release
     1. Configure dcos-vagrant to use the latest release
 
         ```

@@ -1,10 +1,10 @@
-# DCOS Vagrant Box
+# DC/OS Vagrant Box
 
 Vagrant box builder for [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant) using [Packer](https://www.packer.io/).
 
-The box produced by this builder **does not include DCOS**, just it's dependencies.
+The box produced by this builder **does not include DC/OS**, just it's dependencies.
 
-Pre-provisioning this box front-loads internet access requirements, flakiness, and slowness resulting from third party package managemers and installers. This makes DCOS installation faster and more reliable at the cost of potentially having slightly outdated dependencies.
+Pre-provisioning this box front-loads internet access requirements, flakiness, and slowness resulting from third party package managemers and installers. This makes DC/OS installation faster and more reliable at the cost of potentially having slightly outdated dependencies.
 
 
 ## Contents
@@ -20,7 +20,7 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
 
 ## Build
 
-The DCOS Vagrant Box is normally built in CI, on demand, but can be built manually as well.
+The DC/OS Vagrant Box is normally built in CI, on demand, but can be built manually as well.
 
 Note that because the build process uses internet repositories with unversioned requirements, it's not **exactly** reproducible. Each built box may be slightly different than the last, but installations using the same box should be exactly the same.
 
