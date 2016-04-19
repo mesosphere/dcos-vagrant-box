@@ -23,14 +23,10 @@ if ! grep -q "${BOX_NAME}.box" "${project_dir}/metadata.json"; then
   exit 1
 fi
 
-echo "Building mesosphere/aws-cli"
-cd "${project_dir}/aws-cli"
-docker build -t mesosphere/aws-cli .
-
 echo "Uploading metadata.json"
 cd "${project_dir}"
 export AWS_DEFAULT_REGION=us-west-2
-aws-cli/aws.sh s3 cp metadata.json s3://downloads.dcos.io/dcos-vagrant/ --content-type "application/json"
+ci/aws.sh s3 cp metadata.json s3://downloads.dcos.io/dcos-vagrant/ --content-type "application/json"
 
 echo "Checking out master branch"
 git fetch origin master
