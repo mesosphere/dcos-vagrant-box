@@ -13,5 +13,10 @@ yum upgrade --assumeyes --tolerant
 yum update --assumeyes
 echo ">>> New Kernel: $(uname -r)"
 
+if ! lsmod | grep -q overlay; then
+  echo ">>> Enabling OverlayFS on boot"
+  echo "overlay" > /etc/modules-load.d/overlay.conf
+fi
+
 echo ">>> Rebooting to upgrade kernel"
 reboot
