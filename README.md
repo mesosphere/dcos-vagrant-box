@@ -94,7 +94,7 @@ Or with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant):
 cd <dcos-vagrant>
 vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox.box
 export DCOS_BOX_VERSION=0
-vagrant up boot [vms...]
+vagrant up [vms...]
 ```
 
 ### Test Local Catalog
@@ -112,7 +112,7 @@ Or with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant):
 ```
 cd <dcos-vagrant>
 export DCOS_BOX_URL=file://~/workspace/dcos-vagrant-box/metadata.json
-vagrant up boot [vms...]
+vagrant up [vms...]
 ```
 
 To revert back to the remote Vagrant Box Catalog:
