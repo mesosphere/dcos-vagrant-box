@@ -6,6 +6,8 @@ The box produced by this builder **does not include DC/OS**, just it's dependenc
 
 Pre-provisioning this box front-loads internet access requirements, flakiness, and slowness resulting from third party package managemers and installers. This makes DC/OS installation faster and more reliable at the cost of potentially having slightly outdated dependencies.
 
+**Issue tracking is on the [DCOS JIRA](https://dcosjira.atlassian.net/) ([dcos-vagrant component](https://dcosjira.atlassian.net/issues/?jql=project%20%3D%20DCOS%20AND%20component%20%3D%20dcos-vagrant)).**
+
 
 ## Contents
 
