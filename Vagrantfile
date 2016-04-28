@@ -6,7 +6,10 @@ $dcos_box_url = ENV.fetch("DCOS_BOX_URL", "http://downloads.dcos.io/dcos-vagrant
 $dcos_box_version = ENV.fetch("DCOS_BOX_VERSION", nil)
 
 Vagrant.configure(2) do |config|
-  config.vbguest.auto_update = true
+  # configure vagrant-vbguest plugin
+  if Vagrant.has_plugin?('vagrant-vbguest')
+    config.vbguest.auto_update = true
+  end
 
   config.vm.define "dcos-centos-virtualbox" do |vm_cfg|
     vm_cfg.vm.box = $dcos_box
