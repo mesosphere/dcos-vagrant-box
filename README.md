@@ -99,6 +99,13 @@ export DCOS_BOX_VERSION=0
 vagrant up [vms...]
 ```
 
+To revert back to the remote Vagrant Box Catalog:
+
+```
+unset DCOS_BOX_VERSION
+vagrant box remove mesosphere/dcos-centos-virtualbox --box-version=0
+```
+
 ### Test Local Catalog
 
 To test a local Vagrant Box Catalog (e.g. after `ci/update_catalog.sh`), set the `DCOS_BOX_URL` environment variable:
