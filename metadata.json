@@ -5,7 +5,7 @@
     {
       "version": "0.6.0",
       "status": "active",
-      "description_markdown": "Upgrade VirtualBox Guest Additions to 5.0.20",
+      "description_markdown": "- Support Windows hosts\n- Upgrade VirtualBox Guest Additions to 5.0.20",
       "providers": [
         {
           "name": "virtualbox",
