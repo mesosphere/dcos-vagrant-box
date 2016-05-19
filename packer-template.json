@@ -9,6 +9,7 @@
             "bin/os.sh",
             "bin/docker.sh",
             "bin/dcos-deps.sh",
+            "bin/probe.sh",
             "bin/vagrant.sh",
             "bin/virtualbox.sh",
             "bin/cleanup.sh",
