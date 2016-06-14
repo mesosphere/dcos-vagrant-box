@@ -40,6 +40,23 @@ echo '>>> Disabling SELinux and adjusted sudoers'
 sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
 sed -i 's/^.*requiretty/#Defaults requiretty/' /etc/sudoers
 
-echo '>>> Disabling IPV6'
-sysctl -w net.ipv6.conf.all.disable_ipv6=1
-sysctl -w net.ipv6.conf.default.disable_ipv6=1
+function systctl_set() {
+  key=$1
+  value=$2
+  config_path='/etc/sysctl.conf'
+  # set now
+  sysctl -w ${key}=${value}
+  # persist on reboot
+  if grep -q "${key}" "${config_path}"; then
+    sed -i "s/^${key}.*$/${key} = ${value}/" "${config_path}"
+  else
+    echo "${key} = ${value}" >> "${config_path}"
+  fi
+}
+
+echo '>>> Disabling IPv6'
+systctl_set net.ipv6.conf.all.disable_ipv6 1
+systctl_set net.ipv6.conf.default.disable_ipv6 1
+
+echo '>>> Enabling IPv4 Forwarding'
+systctl_set net.ipv4.ip_forward 1
