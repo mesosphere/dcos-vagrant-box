@@ -3,6 +3,19 @@
   "description": "Base image on which to install Mesosphere DC/OS on VirtualBox",
   "versions": [
     {
+      "version": "0.7.0",
+      "status": "active",
+      "description_markdown": "Enable IPv4 forwarding",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.7.0.box",
+          "checksum_type": "sha1",
+          "checksum": "fc9d5a6a99ecb70aee67d4b68b8b6a48563e57cb"
+        }
+      ]
+    },
+    {
       "version": "0.6.3",
       "status": "active",
       "description_markdown": "Install jq",
