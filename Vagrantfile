@@ -20,6 +20,7 @@ Vagrant.configure(2) do |config|
       v.name = "dcos-centos-virtualbox"
       v.cpus = 2
       v.memory = 2048
+      v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
     end
   end
 end
