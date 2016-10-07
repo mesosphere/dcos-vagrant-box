@@ -11,6 +11,10 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
 
 ## Provisioning Summary
 
+- Ansible (used for provisioning)
+  - Python 2.7+
+  - Pip 8.1+
+  - Ansible 2.1+
 - CentOS
   - Latest CentOS 7+ kernel & packages
   - Enable Overlay file system
