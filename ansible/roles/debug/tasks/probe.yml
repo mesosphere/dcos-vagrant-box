@@ -1,0 +1,17 @@
+---
+- name: Download Probe Archive
+  get_url:
+    url: https://github.com/karlkfi/probe/releases/download/v0.3.0/probe-0.3.0-linux_amd64.tgz
+    dest: /tmp/probe.tgz
+    checksum: sha256:5e12339fa770b58ca7b7c4291927390d0ad9f61e6cf95e2572c5de5a7a8db0ec
+
+- name: Extract Probe Archive
+  unarchive: >
+    src=/tmp/probe.tgz
+    dest=/usr/local/sbin/
+    copy=no
+
+- name: Delete Probe Archive
+  file:
+    path: /tmp/probe.tgz
+    state: absent

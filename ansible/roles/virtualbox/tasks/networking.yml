@@ -1,0 +1,34 @@
+---
+# Combination of centos 7 network cleanup tricks for building VM images
+#
+# https://github.com/hfm/packer-centos-7/blob/master/cleanup.sh
+# https://gist.github.com/hedgehog/1060540
+# http://askubuntu.com/questions/240632/how-to-disable-udev-net-rule-generation
+# http://6.ptmc.org/164/
+# https://www.centos.org/forums/viewtopic.php?t=18231
+
+# Replace udev rules with directories to both disable them and disable their auto-replacement on reboot
+# This is importent for running in VMs with dynamic networking
+- name: Disable network interface persistence
+  file:
+    path: "/etc/udev/rules.d/{{ item }}.rules"
+    state: directory
+  with_items:
+    - 70-persistent-net
+    - 75-persistent-net-generator
+
+# Delete the hardware address and unique interface id to force regeneration on first boot
+- name: Clear network interface cache
+  lineinfile:
+    dest: /etc/sysconfig/network-scripts/ifcfg-*
+    regexp: "{{ item }}"
+    state: absent
+  with_items:
+    - '^HWADDR'
+    - '^UUID'
+
+# Delete the udev database to force it to rebuild on first boot
+- name: Delete dynamic device database
+  file:
+    path:  /dev/.udev
+    state: absent

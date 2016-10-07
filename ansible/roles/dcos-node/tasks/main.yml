@@ -1,0 +1,9 @@
+---
+- name: Install Docker
+  include: docker.yml
+
+- name: Cache Docker Images
+  include: docker-cache.yml
+
+- name: Install DC/OS Dependencies
+  include: dcos-deps.yml

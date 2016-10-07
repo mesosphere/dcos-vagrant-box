@@ -1,0 +1,90 @@
+---
+- name: Add docker yum repo
+  blockinfile:
+    dest: /etc/yum.repos.d/docker.repo
+    create: yes
+    block: |
+      [dockerrepo]
+      name=Docker Repository
+      baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://yum.dockerproject.org/gpg
+
+- name: Install Docker
+  yum: >
+    name=docker-engine-1.11.2
+    state=present
+
+- name: Stop Docker
+  service:
+    name: docker
+    state: stopped
+
+- name: Delete all Docker volumes
+  file:
+    path: /var/lib/docker
+    state: absent
+
+- name: Configure Docker to use OverlayFS (part 1)
+  set_fact:
+    dockerd_cmd: "docker daemon"
+    dockerd_arg: "--storage-driver=overlay"
+
+- name: Configure Docker to use OverlayFS (part 2)
+  replace: >
+    dest=/usr/lib/systemd/system/docker.service
+    regexp="^(ExecStart=(.*){{ dockerd_cmd }}) (?!{{ dockerd_arg }})"
+    replace="\1 {{ dockerd_arg }} "
+
+- name: Create docker group
+  group: >
+    name=docker
+    state=present
+
+- name: Add users to the docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  with_items:
+  - docker
+  - vagrant
+
+- name: Start Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Set SELinux to permissive mode
+  selinux: policy=targeted state=permissive
+
+- name: Allow sudo without a tty
+  lineinfile: >
+    dest=/etc/sudoers
+    regexp="^Defaults(\s+)(.*)requiretty(.*)"
+    line="#Defaults\1\2requiretty\3"
+    backrefs=yes
+
+- name: Disable IPv6
+  sysctl:
+    name: "{{ item }}"
+    value: 1
+    state: present
+  with_items:
+  - net.ipv6.conf.all.disable_ipv6
+  - net.ipv6.conf.default.disable_ipv6
+
+# TODO: may be needed at Vagrant provisioning time if added by vagrant
+- name: Disable IPv6 loopback alias
+  lineinfile:
+    dest: /etc/hosts
+    regexp: "^::1"
+    state: absent
+
+- name: Enable IPv4 Forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present

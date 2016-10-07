@@ -1,0 +1,37 @@
+---
+- name: Find kernel version
+  command: uname -r
+  changed_when: false
+  register: kernel_version
+
+# https://github.com/dotless-de/vagrant-vbguest/blob/master/lib/vagrant-vbguest/installers/redhat.rb
+- name: Install Guest Additions installer dependencies
+  yum: >
+    name={{item}}
+    state=present
+  with_items:
+  - "kernel-devel-{{ kernel_version.stdout }}"
+  - gcc
+  - binutils
+  - make
+  - perl
+  - bzip2
+
+- name: Find Guest Additions Version
+  command: cat /home/vagrant/.vbox_version
+  register: vbox_version
+
+- name: Mount Guest Additions ISO
+  command: mount /home/vagrant/VBoxGuestAdditions_{{vbox_version.stdout}}.iso -o loop /mnt creates=/mnt/VBoxLinuxAdditions.run
+
+- name: Install Guest Additions
+  command: /mnt/VBoxLinuxAdditions.run --nox11 -- --force
+  ignore_errors: yes  # Need to ignore errors here because no windowing system is installed on server image.  No way to override.
+
+- name: Unmount Guest Additions ISO
+  command: umount /mnt
+
+- name: Remove Guest Additions ISO
+  file:
+    path: /home/vagrant/VBoxGuestAdditions_*.iso
+    state: absent

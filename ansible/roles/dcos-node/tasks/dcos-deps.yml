@@ -1,0 +1,30 @@
+---
+# Installer pre-flight validates these dependencies
+# https://github.com/dcos/dcos/blob/1.8.4/gen/installer/bash.py#L324-L331
+# CentOS 7 comes with systemd-container pre-installed.
+# Avoid installing systemd, which may conflict with systemd-container.
+- name: Install packages required by DC/OS installer
+  yum: >
+    name={{item}}
+    state=present
+  with_items:
+   - curl
+   - bash
+   - iputils # for ping
+   - tar
+   - xz
+   - unzip
+   - ipset
+
+# Firewall should be configured if custer is publicly accessible.
+# For local dev/test/demo, just disable it.
+- name: Disable firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Create DC/OS user directory
+  file:
+    path: ~/dcos
+    state: directory

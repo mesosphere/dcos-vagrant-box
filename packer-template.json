@@ -2,22 +2,30 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'",
-      "override": {
-        "virtualbox-iso": {
-          "scripts": [
-            "bin/os.sh",
-            "bin/docker.sh",
-            "bin/dcos-deps.sh",
-            "bin/probe.sh",
-            "bin/jq.sh",
-            "bin/vagrant.sh",
-            "bin/virtualbox.sh",
-            "bin/cleanup.sh",
-            "bin/zerodisk.sh"
-          ]
-        }
-      }
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "bin/ansible.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/centos.yml",
+      "playbook_dir": "ansible",
+      "extra_arguments": "-vvvvv"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "inline": ["reboot"]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/dcos-node.yml",
+      "playbook_dir": "ansible",
+      "extra_arguments": "-vvvvv"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "bin/zerodisk.sh"
     }
   ],
   "post-processors": [

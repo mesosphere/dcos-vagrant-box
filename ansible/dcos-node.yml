@@ -1,0 +1,13 @@
+---
+# This playbook prepares a Centos7 VM for DC/OS installation with Vagrant on VirtualBox
+
+- hosts: all
+  gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+  - role: dcos-node
+  - role: debug
+  - role: vagrant
+  - role: virtualbox

@@ -1,0 +1,29 @@
+---
+# Cache Docker images for use by the bootstrap machine to speed up install
+
+- name: Install Docker-Py
+  pip: name=docker-py version=1.9.0
+
+- name: Cache jplock/zookeeper docker image
+  docker:
+    name: zookeeper
+    image: jplock/zookeeper:latest #TODO: use 3.4.8
+    state: present
+    pull: missing # don't start, just pull
+    net: default # workaround bug: https://github.com/ansible/ansible-modules-core/issues/1885
+
+- name: Cache nginx docker image
+  docker:
+    name: nginx
+    image: nginx:latest #TODO: use 1.11.3-alpine
+    state: present
+    pull: missing # don't start, just pull
+    net: default # workaround bug: https://github.com/ansible/ansible-modules-core/issues/1885
+
+- name: Cache registry docker image
+  docker:
+    name: registry
+    image: registry:2 #TODO: use 2.5.0
+    state: present
+    pull: missing # don't start, just pull
+    net: default # workaround bug: https://github.com/ansible/ansible-modules-core/issues/1885
