@@ -9,15 +9,30 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
 **Issue tracking is on the [DCOS JIRA](https://dcosjira.atlassian.net/projects/VAGRANT).**
 
 
-## Contents
+## Provisioning Summary
 
-- CentOS 7+
-- Docker
-- Vagrant default SSH key
-- Disabled firewalld
-- Cached Docker images
-  - nginx
-  - jplock/zookeeper
+- CentOS
+  - Latest CentOS 7+ kernel & packages
+  - Enable Overlay file system
+  - Disable kdump
+- DC/OS Node
+  - Docker 1.11 w/ OverlayFS
+  - curl, bash, ping, tar, xz, unzip, ipset
+  - Disable firewalld
+  - Disable IPv6
+  - Cache docker images: nginx, zookeeper, registry
+- Debug
+  - jq
+  - probe
+  - net-utils
+- Vagrant
+  - Default Vagrant SSH key
+  - Configure SSH
+- VirtualBox
+  - Guest Additions
+  - Reset network interface config
+  - Remove packages to reduce image size
+- Zero out free space to improve image compression
 
 
 ## Build
