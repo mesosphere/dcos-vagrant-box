@@ -9,3 +9,6 @@
 
 - name: Install net-tools
   include: net-tools.yml
+
+- name: Install bind-utils
+  include: bind-utils.yml

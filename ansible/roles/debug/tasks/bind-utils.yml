@@ -1,0 +1,7 @@
+---
+- name: Install bind-utils
+  yum: >
+    name={{item}}
+    state=present
+  with_items:
+   - bind-utils
