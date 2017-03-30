@@ -11,10 +11,15 @@
       gpgcheck=1
       gpgkey=https://yum.dockerproject.org/gpg
 
+# Install docker-engine with docker-engine-selinux explicitly
+# Otherwise a newer version of docker-engine-selinux will be installed, causing an untested combination
 - name: Install Docker
   yum: >
-    name=docker-engine-1.11.2
+    name={{item}}
     state=present
+  with_items:
+   - docker-engine-1.13.1
+   - docker-engine-selinux-1.13.1
 
 - name: Stop Docker
   service:
@@ -28,7 +33,7 @@
 
 - name: Configure Docker to use OverlayFS (part 1)
   set_fact:
-    dockerd_cmd: "docker daemon"
+    dockerd_cmd: "dockerd"
     dockerd_arg: "--storage-driver=overlay"
 
 - name: Configure Docker to use OverlayFS (part 2)
