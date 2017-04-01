@@ -3,6 +3,19 @@
   "description": "Base image on which to install Mesosphere DC/OS on VirtualBox",
   "versions": [
     {
+      "version": "0.9.0",
+      "status": "active",
+      "description_markdown": "CentOS 7.3, Docker 1.13.1, and bind-utils",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.9.0.box",
+          "checksum_type": "sha1",
+          "checksum": "6244703cec3fb176f1421c32f72cdfd593d95b75"
+        }
+      ]
+    },
+    {
       "version": "0.8.0",
       "status": "active",
       "description_markdown": "ansible provisioning, updated kernel",
