@@ -65,13 +65,6 @@
 - name: Set SELinux to permissive mode
   selinux: policy=targeted state=permissive
 
-- name: Allow sudo without a tty
-  lineinfile: >
-    dest=/etc/sudoers
-    regexp="^Defaults(\s+)(.*)requiretty(.*)"
-    line="#Defaults\1\2requiretty\3"
-    backrefs=yes
-
 - name: Disable IPv6
   sysctl:
     name: "{{ item }}"

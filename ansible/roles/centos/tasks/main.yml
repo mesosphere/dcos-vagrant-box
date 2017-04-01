@@ -1,31 +1,4 @@
 ---
-# Upgrace CentOS to latest kernel, enable OverlayFS, and disable kdump
-
-- name: Find kernel version
-  command: uname -r
-  changed_when: false
-  register: kernel_version
-
-- debug: msg="CentOS base image at {{ kernel_version.stdout }}"
-
-# Upgrade/Update all packages to latest version
-- name: Upgrade CentOS
-  yum: >
-    name=*
-    state=latest
-
-- name: Find kernel version
-  command: uname -r
-  changed_when: false
-  register: kernel_version
-
-- debug: msg="CentOS upgraded to {{ kernel_version.stdout }}"
-
-- name: Enable OverlayFS
-  copy: >
-    content=overlay
-    dest=/etc/modules-load.d/overlay.conf
-
 # kdump's default config will not work on machines with less than 2GB memory.
 # But machine memory is configurable at runtime.
 # So just disable kdump (bonus: frees up active memory).
@@ -36,3 +9,13 @@
     name: kdump
     state: stopped
     enabled: no
+
+- name: Configure SSH daemon
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - { regexp: '^UseDNS', line: 'UseDNS no' }
+    - { regexp: '^GSSAPIAuthentication', line: 'GSSAPIAuthentication no' }

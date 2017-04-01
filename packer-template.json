@@ -12,11 +12,6 @@
       "extra_arguments": "-vvvvv"
     },
     {
-      "type": "shell",
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "inline": ["reboot"]
-    },
-    {
       "type": "ansible-local",
       "playbook_file": "ansible/dcos-node.yml",
       "playbook_dir": "ansible",
@@ -56,7 +51,7 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
       ]
     }

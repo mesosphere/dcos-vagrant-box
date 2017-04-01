@@ -24,6 +24,11 @@
     state: stopped
     enabled: no
 
+- name: Create nogroup group
+  group: >
+    name=nogroup
+    state=present
+
 - name: Create DC/OS user directory
   file:
     path: ~/dcos
