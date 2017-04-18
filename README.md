@@ -16,11 +16,11 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
   - Pip 8.1+
   - Ansible 2.1+
 - CentOS
-  - Latest CentOS 7+ kernel & packages
+  - Latest CentOS 7.3 kernel & packages
   - Enable Overlay file system
   - Disable kdump
 - DC/OS Node
-  - Docker 1.11 w/ OverlayFS
+  - Docker 1.13.1 w/ OverlayFS
   - curl, bash, ping, tar, xz, unzip, ipset
   - Disable firewalld
   - Disable IPv6
