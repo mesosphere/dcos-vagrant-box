@@ -11,27 +11,31 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
 
 ## Provisioning Summary
 
-- Ansible (used for provisioning)
+- CentOS 7.3 ([kickstart file](http/ks.cfg))
+- Ansible (for provisioning)
   - Python 2.7+
   - Pip 8.1+
   - Ansible 2.1+
 - CentOS
-  - Latest CentOS 7.3 kernel & packages
-  - Enable Overlay file system
-  - Disable kdump
+  - Disable kdump (reduce resource consumption for smaller VMs)
+  - Configure SSH daemon (disable DNS and API authn for speed)
 - DC/OS Node
   - Docker 1.13.1 w/ OverlayFS
   - curl, bash, ping, tar, xz, unzip, ipset
   - Disable firewalld
+  - Create nogroup group
   - Disable IPv6
+  - Enable IPv4 Forwarding (required by vagrant-hostmanager)
   - Cache docker images: nginx, zookeeper, registry
 - Debug
   - jq
   - probe
-  - net-utils
+  - net-tools
+  - bind-utils
 - Vagrant
   - Default Vagrant SSH key
-  - Configure SSH
+  - Configure SSH daemon (disable DNS and API authn for speed)
+  - Set box build time (`/etc/vagrant_box_build_time`)
 - VirtualBox
   - Guest Additions
   - Reset network interface config
