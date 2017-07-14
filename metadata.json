@@ -3,6 +3,19 @@
   "description": "Base image on which to install Mesosphere DC/OS on VirtualBox",
   "versions": [
     {
+      "version": "0.9.2",
+      "status": "active",
+      "description_markdown": "Enable iptables filtering of net bridge traffic",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "https://downloads.dcos.io/dcos-vagrant/dcos-centos-virtualbox-0.9.2.box",
+          "checksum_type": "sha1",
+          "checksum": "9d083514f78dbf4e87eda00937d9980217675166"
+        }
+      ]
+    },
+    {
       "version": "0.9.1",
       "status": "active",
       "description_markdown": "Increase default disk size from 10GiB to 100GiB",
