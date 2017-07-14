@@ -86,3 +86,14 @@
     name: net.ipv4.ip_forward
     value: 1
     state: present
+
+# https://github.com/moby/moby/issues/24809
+# http://wiki.libvirt.org/page/Net.bridge.bridge-nf-call_and_sysctl.conf
+- name: Enable iptables filtering of bridge traffic
+  sysctl:
+    name: "{{ item }}"
+    value: 1
+    state: present
+  with_items:
+  - net.bridge.bridge-nf-call-iptables
+  - net.bridge.bridge-nf-call-ip6tables
