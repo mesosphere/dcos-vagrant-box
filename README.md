@@ -1,3 +1,9 @@
+# Deprecation Notice
+
+[dcos-vagrant](https://github.com/mesosphere/dcos-vagrant) is deprecated in favor of the [DC/OS E2E CLI](https://dcos-e2e-cli.readthedocs.io/en/latest/).
+
+That means that we do not guarantee that DC/OS Vagrant Box will continue to work.
+
 # DC/OS Vagrant Box
 
 Vagrant box builder for [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant) using [Packer](https://www.packer.io/).
