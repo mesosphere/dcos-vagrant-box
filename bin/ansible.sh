@@ -22,7 +22,7 @@ echo '>>> Installing pip (and dependencies)'
 yum install -y python-devel libffi-devel openssl-devel gcc python-pip redhat-rpm-config
 
 echo '>>> Upgrading pip'
-pip install --upgrade pip==8.1.2
+pip install --upgrade pip==19.1.1
 
 # Avoid bug in default python cryptography library
 # [WARNING]: Optional dependency 'cryptography' raised an exception, falling back to 'Crypto'
@@ -30,4 +30,4 @@ echo '>>> Upgrading python cryptography library'
 pip install --upgrade cryptography
 
 echo '>>> Installing Ansible'
-pip install ansible==2.1.2
+pip install ansible==2.8.1

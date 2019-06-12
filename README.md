@@ -1,32 +1,23 @@
-# Deprecation Notice
-
-[dcos-vagrant](https://github.com/mesosphere/dcos-vagrant) is deprecated in favor of the [DC/OS E2E CLI](https://dcos-e2e-cli.readthedocs.io/en/latest/).
-
-That means that we do not guarantee that DC/OS Vagrant Box will continue to work.
-
 # DC/OS Vagrant Box
 
-Vagrant box builder for [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant) using [Packer](https://www.packer.io/).
+Vagrant box builder for use by tools such as [miniDC/OS](https://minidcos.readthedocs.io/en/latest/).  It makes use of [Packer](https://www.packer.io/) to automate the build process.
 
-The box produced by this builder **does not include DC/OS**, just it's dependencies.
+The box produced by this builder **does not include DC/OS**, just its dependencies.
 
 Pre-provisioning this box front-loads internet access requirements, flakiness, and slowness resulting from third party package managemers and installers. This makes DC/OS installation faster and more reliable at the cost of potentially having slightly outdated dependencies.
 
-**Issue tracking is on the [DCOS JIRA](https://dcosjira.atlassian.net/projects/VAGRANT).**
-
-
 ## Provisioning Summary
 
-- CentOS 7.3 ([kickstart file](http/ks.cfg))
+- CentOS 7 (1810) ([kickstart file](http/ks.cfg))
 - Ansible (for provisioning)
   - Python 2.7+
-  - Pip 8.1+
-  - Ansible 2.1+
+  - Pip 19.2+
+  - Ansible 2.8+
 - CentOS
   - Disable kdump (reduce resource consumption for smaller VMs)
   - Configure SSH daemon (disable DNS and API authn for speed)
 - DC/OS Node
-  - Docker 1.13.1 w/ OverlayFS
+  - Docker CE w/ OverlayFS
   - curl, bash, ping, tar, xz, unzip, ipset
   - Disable firewalld
   - Create nogroup group
@@ -42,12 +33,11 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
   - Default Vagrant SSH key
   - Configure SSH daemon (disable DNS and API authn for speed)
   - Set box build time (`/etc/vagrant_box_build_time`)
-- VirtualBox
-  - Guest Additions
+- VirtualBox and VMware (Fusion and Workstation)
+  - Guest Additions / VMware Tools Additions
   - Reset network interface config
   - Remove packages to reduce image size
 - Zero out free space to improve image compression
-
 
 ## Build
 
@@ -59,11 +49,13 @@ Note that because the build process uses internet repositories with unversioned 
 ### Build Requirements
 
 - [Packer](https://www.packer.io/) - tool for OS image building
-- [VirtualBox](https://www.virtualbox.org/) (>= 4.3)
+- One of the following hypervisors:
+    - [Oracle VirtualBox](https://www.virtualbox.org/) (>= 4.3)
+    - [VMware Fusion](https://www.vmware.com/uk/products/fusion.html) (>=10)
+    - [VMware Workstation Pro](https://www.vmware.com/uk/products/workstation-pro.html) (>=12)
 - [Git](https://git-scm.com/) - for updating the Vagrant Box Catalog Metadata
 - [Docker](https://www.docker.com/) - for running various other dependencies
 - [OpenSSL](https://www.openssl.org/) - for generating box checksums
-
 
 ### Build Pipeline
 
@@ -76,7 +68,6 @@ Note that because the build process uses internet repositories with unversioned 
 
 Note that because the build process uses internet repositories with unversioned requirements, it's not **exactly** reproducible. Each built box may be slightly different than the last, but installations using the same box should be exactly the same.
 
-
 ### Manual Build
 
 Use the following commands to build a dcos-centos-virtualbox box:
@@ -86,11 +77,9 @@ cd <dcos-vagrant-box>
 packer build packer-template.json
 ```
 
-
 ## Test
 
-New boxes can be tested with either the Vagrantfile in this repo or (preferably) with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant).
-
+New boxes can be tested with either the Vagrantfile in this repo or (preferably) with [miniDC/OS](https://minidcos.readthedocs.io/en/latest/).
 
 ### Test Requirements
 
@@ -160,10 +149,9 @@ unset DCOS_BOX_URL
 echo -n "https://downloads.dcos.io/dcos-vagrant/metadata.json" > ~/.vagrant.d/boxes/mesosphere-VAGRANTSLASH-dcos-centos-virtualbox/metadata_url
 ```
 
-
 # License
 
-Copyright 2016 Mesosphere, Inc.
+Copyright 2019 Mesosphere, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this repository except in compliance with the License.

@@ -27,7 +27,7 @@
     {
       "type": "vagrant",
       "compression_level": 9,
-      "output": "dcos-centos-virtualbox.box"
+      "output": "dcos-centos-{{ .BuildName }}.box"
     }
   ],
   "builders": [
@@ -40,13 +40,13 @@
       "disk_size": 102400,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
-      "iso_checksum_type": "sha256",
-      "iso_url": "http://mirrors.sonic.net/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_url": "{{ user `iso_url` }}",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
       "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
@@ -54,7 +54,37 @@
         [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
       ]
+    },
+    {
+      "type": "vmware-iso",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": 102400,
+      "guest_os_type": "centos-64",
+      "http_directory": "http",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": 2048,
+      "cpus": 1,
+      "cores": 1,
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'vagrant'|sudo -S sh '/tmp/shutdown.sh'",
+      "tools_upload_flavor": "linux",
+      "vmx_remove_ethernet_interfaces": true
     }
-  ]
+  ],
+  "variables": {
+      "iso_checksum_type": "sha256",
+      "iso_url": "https://mirror.bytemark.co.uk/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+      "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant"
+  }
 }
 

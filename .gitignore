@@ -4,3 +4,4 @@ dcos_generate_config*.sh
 .vagrant
 packer_cache
 *.box
+output-vmware-iso

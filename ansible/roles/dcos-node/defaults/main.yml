@@ -1,0 +1,6 @@
+---
+docker_yum_url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
+docker_yum_baseurl: "{{ docker_yum_url }}/{{ ansible_distribution_major_version | lower }}/$basearch/stable"
+docker_yum_gpgkey: "{{ docker_yum_url }}/gpg"
+docker_yum_package: "docker-ce"
+
