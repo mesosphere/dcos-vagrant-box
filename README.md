@@ -74,7 +74,7 @@ Use the following commands to build a dcos-centos-virtualbox box:
 
 ```bash
 cd <dcos-vagrant-box>
-packer build packer-template.json
+packer build -except=vmware-iso packer-template.json
 ```
 
 ## Test
