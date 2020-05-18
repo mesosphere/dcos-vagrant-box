@@ -8,7 +8,7 @@ Pre-provisioning this box front-loads internet access requirements, flakiness, a
 
 ## Provisioning Summary
 
-- CentOS 7 (1810) ([kickstart file](http/ks.cfg))
+- CentOS 7 (2003) ([kickstart file](http/ks.cfg))
 - Ansible (for provisioning)
   - Python 2.7+
   - Pip 19.2+
