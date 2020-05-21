@@ -1,0 +1,14 @@
+---
+# Configure VirtualBox Guest Additions or VMware Tools
+
+- name: Install common packages for VirtualBox Guest Additions and VMware Tools
+  include: install.yml
+
+- name: Install VirtualBox Guest Additions
+  include: virtualbox.yml
+  when: ansible_facts['virtualization_type'] == 'virtualbox'
+
+- name: Install VMware Tools
+  include: vmware.yml
+  when: ansible_facts['virtualization_type'] == 'VMware'
+

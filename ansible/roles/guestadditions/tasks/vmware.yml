@@ -1,0 +1,30 @@
+---
+- name: Mount VMware guest tools ISO
+  mount: 
+    src: /home/vagrant/linux.iso
+    path: /mnt/cdrom
+    opts: loop
+    state: mounted
+    fstype: iso9660
+
+- name: Extract VMware guest tools
+  unarchive: 
+    src: "{{ item }}"
+    dest: /tmp/
+    remote_src: yes
+  with_fileglob:
+  - "/mnt/cdrom/VMwareTools-*.tar.gz"
+
+- name: Install VMware guest tools
+  command: /tmp/vmware-tools-distrib/vmware-install.pl -d -f
+
+- name: Unmount VMware guest tools ISO
+  mount:
+    src: /home/vagrant/linux.iso
+    path: /mnt/cdrom
+    state: absent
+
+- name: Cleanup guest tools
+  file:
+    path: /home/vagrant/linux.iso
+    state: absent

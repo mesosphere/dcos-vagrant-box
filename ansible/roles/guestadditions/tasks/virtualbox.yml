@@ -1,0 +1,29 @@
+---
+- name: Find Guest Additions Version
+  command: cat /home/vagrant/.vbox_version
+  register: vbox_version
+
+- name: Mount Guest Additions ISO
+  mount:
+    src: /home/vagrant/VBoxGuestAdditions_{{vbox_version.stdout}}.iso
+    path: /mnt/cdrom
+    opts: loop
+    state: mounted
+    fstype: iso9660
+
+- name: Install Guest Additions
+  command: /mnt/cdrom/VBoxLinuxAdditions.run --nox11 -- --force
+  ignore_errors: yes  # Need to ignore errors here because no windowing system is installed on server image.  No way to override.
+
+- name: Unmount Guest Additions ISO
+  mount:
+    src: /home/vagrant/VBoxGuestAdditions_{{vbox_version.stdout}}.iso
+    path: /mnt/cdrom
+    state: absent
+
+- name: Remove Guest Additions ISO
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_fileglob:
+  - "/home/vagrant/VBoxGuest*.iso"

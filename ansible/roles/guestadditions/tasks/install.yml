@@ -1,0 +1,27 @@
+---
+- name: Find kernel version
+  command: uname -r
+  changed_when: false
+  register: kernel_version
+
+- name: Add HGFS mount point
+  file:
+    path: /mnt/hgfs
+    state: directory
+
+- name: Create CDROM mount point
+  file:
+    path: /mnt/cdrom
+    state: directory
+
+- name: Install dependencies for Guest Additions / VMware Tools
+  yum: 
+    name:
+        - "kernel-devel-{{ kernel_version.stdout }}"
+        - gcc
+        - binutils
+        - make
+        - perl
+        - bzip2
+    state: installed
+  become: True

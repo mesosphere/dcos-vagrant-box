@@ -4,9 +4,9 @@
 # CentOS 7 comes with systemd-container pre-installed.
 # Avoid installing systemd, which may conflict with systemd-container.
 - name: Install packages required by DC/OS installer
-  yum: >
-    name={{item}}
-    state=present
+  yum:
+    name: "{{ item }}"
+    state: present
   with_items:
    - curl
    - bash
@@ -25,11 +25,11 @@
     enabled: no
 
 - name: Create nogroup group
-  group: >
-    name=nogroup
-    state=present
+  group:
+    name: nogroup
+    state: present
 
 - name: Create DC/OS user directory
   file:
-    path: ~/dcos
+    path: /home/dcos
     state: directory
