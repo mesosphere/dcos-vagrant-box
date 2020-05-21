@@ -1,25 +1,23 @@
 ---
-- name: Add docker yum repo
-  blockinfile:
-    dest: /etc/yum.repos.d/docker.repo
-    create: yes
-    block: |
-      [dockerrepo]
-      name=Docker Repository
-      baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
-      enabled=1
-      gpgcheck=1
-      gpgkey=https://yum.dockerproject.org/gpg
+- name: Enable Docker yum repository
+  yum_repository:
+    name: docker
+    description: Main Docker repository
+    baseurl: "{{ docker_yum_baseurl }}"
+    gpgcheck: yes
+    gpgkey: "{{ docker_yum_gpgkey }}"
 
-# Install docker-engine with docker-engine-selinux explicitly
-# Otherwise a newer version of docker-engine-selinux will be installed, causing an untested combination
+- name: Install Docker RPM GPG key
+  rpm_key:
+    state: present
+    key: "{{ docker_yum_url }}/gpg"
+  become: True
+
 - name: Install Docker
-  yum: >
-    name={{item}}
-    state=present
-  with_items:
-   - docker-engine-1.13.1
-   - docker-engine-selinux-1.13.1
+  yum:
+    name: 
+      - docker-ce
+    state: installed
 
 - name: Stop Docker
   service:

@@ -1,14 +1,11 @@
-#!/usr/bin/env bash
-
-set -o errexit
-set -o nounset
-set -o pipefail
-
-# dd errors when the disk becomes full, which is the goal. ignore those errors
+#!/usr/bin/env bash -eux
 
 echo '>>> Zeroing /dev/zero'
-dd if=/dev/zero of=/empty bs=1M || true
+dd if=/dev/zero of=/empty bs=1M || echo "dd exit code $? is suppressed"
 rm -f /empty
+
+# Block until the empty file has actually been removed
+sync
 
 echo '>>> Remove bash history'
 unset HISTFILE
@@ -33,6 +30,6 @@ rm /boot/whitespace
 echo '>>> Whiteout swap'
 SWAPPART=$(swapon -s | tail -n1 | tr -s ' ' | cut -d ' ' -f 1)
 swapoff ${SWAPPART}
-dd if=/dev/zero of=${SWAPPART} || true
+dd if=/dev/zero of=${SWAPPART} || echo "dd exit code $? is suppressed"
 mkswap ${SWAPPART}
 swapon ${SWAPPART}

@@ -7,8 +7,29 @@
 # http://6.ptmc.org/164/
 # https://www.centos.org/forums/viewtopic.php?t=18231
 
-# Replace udev rules with directories to both disable them and disable their auto-replacement on reboot
-# This is importent for running in VMs with dynamic networking
+- name: Remove unneeded packages
+  yum:
+    name:
+      - gtk2
+      - libX11
+      - hicolor-icon-theme
+      - avahi
+      - freetype
+      - bitstream-vera-fonts
+      - cpp
+      - kernel-devel
+      - kernel-headers
+    state: absent
+
+# No equivalent ansible yum module option
+- name: Clean yum
+  command: yum clean all
+
+- name: Clean Ruby Gems
+  file:
+    path: /tmp/rubygems-*
+    state: absent
+
 - name: Disable network interface persistence
   file:
     path: "/etc/udev/rules.d/{{ item }}.rules"
