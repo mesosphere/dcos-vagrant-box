@@ -24,7 +24,9 @@ Vagrant.configure(2) do |config|
     vb.cpus = $cpus
     vb.memory = $memory
     vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-    vb.linked_clone = true
+    # Linked clone disabled until Vagrant can remove the generated master.
+    # https://www.vagrantup.com/docs/virtualbox/configuration.html#linked-clones
+    vb.linked_clone = false
   end
   config.vm.provider "vmware_fusion" do |vmware|
     vmware.vmx['cpus'] = $cpus
