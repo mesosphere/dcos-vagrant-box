@@ -103,7 +103,7 @@ To test a new local box (e.g. after `ci/build_release.sh`), add the box to vagra
 
 ```
 cd <dcos-vagrant-box>
-vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox.box
+vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox-iso.box
 export DCOS_BOX_VERSION=0
 vagrant up
 ```
@@ -112,7 +112,7 @@ Or with [dcos-vagrant](https://github.com/mesosphere/dcos-vagrant):
 
 ```
 cd <dcos-vagrant>
-vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox.box
+vagrant box add mesosphere/dcos-centos-virtualbox dcos-centos-virtualbox-iso.box
 export DCOS_BOX_VERSION=0
 vagrant up [vms...]
 ```

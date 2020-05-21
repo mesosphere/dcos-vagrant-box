@@ -20,4 +20,4 @@ fi
 echo "Building dcos-centos-virtualbox-${BOX_VERSION}.box"
 cd "${project_dir}"
 "${PACKER}" build -except=vmware-iso packer-template.json
-mv dcos-centos-virtualbox.box dcos-centos-virtualbox-${BOX_VERSION}.box
+mv dcos-centos-virtualbox-iso.box dcos-centos-virtualbox-${BOX_VERSION}.box
